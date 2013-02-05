@@ -125,7 +125,8 @@ p {
 }
 
 .tyler {
-	color: #009F00;
+	/*color: #009F00;*/
+	color: blue;
 }
 
 .project {
