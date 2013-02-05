@@ -88,8 +88,8 @@ h3 {
 
 p {
 	font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-	font-size: 16px;
-	line-height: 150%;
+	font-size: 17px;
+	line-height: 160%;
 	padding-left: 40px;
 	padding-right: 40px;
 	padding-top: 20px;
@@ -111,6 +111,8 @@ p {
 
 #content {
 	width: 1000px;
+	margin-right: auto;
+	margin-left: auto;
 }
 
 #gilbertimg {
