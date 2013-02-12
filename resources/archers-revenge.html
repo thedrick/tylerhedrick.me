@@ -1,0 +1,304 @@
+<!-- 15-237 Project 1
+ * Samaan Ghani (sghani), Tyler Hedrick (thedrick), Peter J. Marino (pmarino)
+ * 29 January 2013 
+ 
+ Based off of Final Fantasy Tactics (http://www.youtube.com/watch?v=feP9LG_VgHc#t=1m53s), 
+ Archer's Revenge is a turn based strategy RPG. Features that we'd like to add to improve 
+ the game further include choice of where to place units and a bottom screen menu bar instead of 
+ the floating corner menus.
+ -->
+
+<html>
+<title> 15-237 Project 1 </title>
+<head> <link href='http://fonts.googleapis.com/css?family=Croissant+One' rel='stylesheet' type='text/css'> </head>
+<style>
+#canvas {
+  margin: 0 auto;
+  text-align: center;
+  display: block;
+}
+</style>
+  <canvas id="canvas" width="1000", height="600", style="border:5px solid #000000"></canvas>
+  <script> // Load the music :3 
+  var music = new Audio('./archers-resources/fftmusic.ogg');
+  music.loop = true;
+  music.play();
+  </script>
+  <script>
+  var currentPlayer;
+  var gameOver;
+  var mainInterval;
+  
+  // CONSTANTS 
+  var canvas;
+  var ctx;
+  var cursor;
+  var characterSet;
+
+  var Tutorial;
+  
+  // tile constants
+  var tileH;
+  var tileW;
+  var tileSize;
+
+  // characters constants
+  var charH;
+  var charW;
+  var charWoffset;
+  var charHoffset;
+
+  // Global states that represent the current actions allowed or unallowed
+  var damageDisplayCounter;
+  var damageDisplayAmount;
+  var selectedCharacter;
+  var actionMenuShowing;
+  var actionMagicMenuShowing;
+  var characterIsMoving;
+  var characterIsAttacking;
+  var characterIsMagicking;
+  var characterIsWaiting;
+  var currentActionItem;
+  var neighbors;
+  var attack;
+  var magic;
+
+  // Load the tilesets
+  var tileset;
+  var characters;
+  
+  // gameboard
+  var grid;
+  // drawing code located in gameDrawing.js
+  var drawTile;
+  var drawActionMenuArrow;
+  var containsmovement;
+  var drawMovementSquares;
+  var containsattack;
+  var drawAttackSquares;
+  var drawMagicSquares;
+  var drawActionMenu;
+  var drawStatusBox;
+  var drawDirectionArrowUp;
+  var drawDirectionArrowLeft;
+  var drawDirectionArrowRight;
+  var drawDirectionArrowDown;
+  var drawWaitingArrows;
+  var loadmap;
+  var circle;
+  var drawCharacterSide;
+  var drawDamageMagic;
+  var characterCanAttack;
+  var player1Wins;
+  var player2Wins;
+  
+  // units code located in units.js
+  var Archer;
+  var Warrior;
+  var Mage;
+  var Ninja;
+  var Cleric;
+  
+  // Event handlers - located in eventHandlers.js
+  var madeActionSelection;
+  var handleAttack;
+  var handleMagic;
+  var killCharacter;
+  var switchTurn;
+  var hasMP;
+  var handleActionMenu;
+  var alreadyOccupied;
+  var characterAtLocation;
+  var handleCharacterWaiting;
+  var handleCharacterMoving;
+  var handleCharacterAttacking;
+  var handleCharacterMagicking;
+  var handleCursorMovement;
+  var keyboardHandler;
+  
+  // Defined below
+  var App;
+  var resetGameStates;
+  var draw;
+  var resetCharacters;
+  
+  // Unique ID generator
+  var uniqueID = function() {
+    var currentID = 0;
+    return function() {
+      return ++currentID;
+    }
+  }
+  var uidGen = uniqueID();
+  </script>
+  
+  <script src="gameDrawing.js" ></script>
+  <script src="units.js"></script>
+  <script src="eventHandlers.js"></script>
+  <script src="menu.js"></script>
+  <script src="tutorial.js"></script>
+  <script>
+  window.onload = function() {
+   Welcome();
+  }
+  
+  App = function() {
+    canvas = document.getElementById("canvas");
+    ctx = canvas.getContext("2d");
+    characterSet = [];
+
+    // Global states that represent the current actions allowed or unallowed
+    currentPlayer = 1;
+	  selectedCharacter = null;
+    actionMenuShowing = false;
+    characterIsMoving = false;
+    characterIsAttacking = false;
+    characterIsWaiting = false;
+    currentActionItem = 0;
+    neighbors = new Array();
+    attack = new Array();
+	  magic = new Array();
+    
+    resetCharacters = function() {
+      characterSet.forEach(function (c){
+  	    c.isBeingAttacked = false;
+  	    c.isBeingMagicked = false;
+  	  });
+    }
+    
+    // resets game states back to default values.
+    resetGameState = function() {
+      if (selectedCharacter !== null) {
+        selectedCharacter.isSelected = false;
+        selectedCharacter = null;
+      }
+      actionMenuShowing = false;
+      characterIsMoving = false;
+      characterIsAttacking = false;
+      characterIsMagicking = false;
+	    characterIsWaiting = false;
+      currentActionItem = 0;
+      neighbors = [];
+      attack = [];
+	    magic = [];
+	    resetCharacters();
+	  
+	  
+	  
+	  var noMovesLeft = true;
+	  for (var i = 0; i < characterSet.length; i++) {
+		if (characterSet[i].myTurn && (!(characterSet[i].hasMoved && characterSet[i].hasAttacked))) {
+			  noMovesLeft = false;
+			  break;
+		  }
+	  }
+	  if (noMovesLeft) {
+		    switchTurn();
+	    }
+    }
+    
+    // white outline around squares which represents the player's cursor. This allows the player
+    // to make selections, pick tiles to move to, pick tiles to attack, etc.
+    Cursor = function(ctx, x,y) {
+      this.x = x;
+      this.y = y;
+      this.draw = function(ctx) {
+        ctx.strokeStyle = "white"
+        ctx.lineWidth = 2;
+        ctx.strokeRect(tileW * this.x, tileH * this.y, tileW - 2, tileH - 2);
+      }
+      this.moveLeft = function() {
+        if (this.x > 0) {
+          this.x--;
+        }
+      }
+      this.moveRight = function() {
+        if (this.x < grid[0].length - 1) {
+          this.x++;
+        }
+      }
+      this.moveUp = function() {
+        if (this.y > 0) {
+          this.y--;
+        }
+      }
+      this.moveDown = function() {
+        if (this.y < grid.length - 1) {
+          this.y++;
+        }
+      }
+    }
+    
+    // initialize the cursor at the top left of the game board.
+    cursor = new Cursor(ctx, 0,0); 
+    
+    canvas.addEventListener('keydown', keyboardHandler, true);
+    canvas.setAttribute('tabindex', '0');
+    canvas.focus();
+    
+    // populate the board with some starting units.
+    characterSet.push(new Archer(ctx, 8,2, 1));
+    characterSet.push(new Cleric(ctx, 8,4, 1));
+    characterSet.push(new Ninja(ctx, 10,2, 1));
+    characterSet.push(new Mage(ctx, 10,3, 1));
+    characterSet.push(new Warrior(ctx, 9,3,1));
+    
+	characterSet.push(new Archer(ctx, 12,12, 2));
+    characterSet.push(new Cleric(ctx, 12,10, 2));
+    characterSet.push(new Ninja(ctx,11,11, 2));
+    characterSet.push(new Mage(ctx, 13,11, 2));
+    characterSet.push(new Warrior(ctx, 13,10, 2));
+	
+    // The draw function to continually update the canvas with data.
+    draw = function() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      loadmap(ctx);
+      characterSet.forEach(function(c) {
+        if (c.isSelected) {
+          if (actionMenuShowing) {
+		    (c.isMagical) ? drawActionMagicMenu(ctx,c) : drawActionMenu(ctx, c);
+          } else if (characterIsMoving) {
+            drawMovementSquares(ctx, c.movementRange, c.x, c.y);
+            for(var k=0; k<neighbors.length; k++){
+              var xcord = neighbors[k][0];
+              var ycord = neighbors[k][1];
+              ctx.fillRect(tileW*xcord, tileH*ycord, 37,37);
+            }
+          } else if (characterIsAttacking) {
+            drawAttackSquares(ctx, c.attackRange, c.x, c.y);
+			 for(var k=0; k<attack.length; k++){
+              var xcord = attack[k][0];
+              var ycord = attack[k][1];
+              ctx.fillRect(tileW*xcord, tileH*ycord, 37,37);
+            }
+          }
+		  else if (characterIsMagicking) {
+            drawMagicSquares(ctx, c.magicRange, c.x, c.y);
+			 for(var k=0; k<magic.length; k++){
+              var xcord = magic[k][0];
+              var ycord = magic[k][1];
+              ctx.fillRect(tileW*xcord, tileH*ycord, 37,37);
+            }
+          }
+        }
+      });
+      characterSet.forEach(function(c) {
+        c.draw(ctx);
+      });
+      if (characterIsWaiting) {
+        drawWaitingArrows(ctx, selectedCharacter);
+      } else {
+        cursor.draw(ctx);
+      }
+      characterSet.forEach(function(c) {
+        c.shouldDrawDamage(ctx);
+        if (cursor.x === c.x && cursor.y === c.y)
+          drawStatusBox(ctx, c);
+      });
+    }
+    
+    // draw at 30 FPS
+    mainInterval = setInterval(draw, 1000 / 30);
+  }
+  </script>  
+</html>

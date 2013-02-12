@@ -69,7 +69,7 @@ a:hover {
 	color: #00BF00
 }
 
-li {
+nav li {
 	padding: 15px;
 	text-align: center;
 	display: inline-block;
@@ -79,7 +79,7 @@ li {
 }
 
 body {
-	background-color: #ddd;
+	background-image: url('gray_jean.png');
 }
 
 h2 {
@@ -169,7 +169,7 @@ p {
 
 .project {
 	display: block;
-	background-color: #f0f0f0;
+	background-image: url('grey.png');
 	padding-left: 5px;
 	padding-top: 5px;
 	padding-bottom: 5px;
