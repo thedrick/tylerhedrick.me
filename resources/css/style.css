@@ -163,7 +163,8 @@ p {
 	width: 870px;
 	height: 550px;
 	display: block;
-	margin: 20px auto 0 auto;
+	margin-top: 20px;
+	margin-left: 5px;
 }
 
 #myprojects p {
@@ -216,7 +217,7 @@ p {
 .pict {
 	font-size: 36px;
 	display: inline-block;
-	margin: 0 27px;
+	width: 75px;
 	position: relative;
 }
 
@@ -232,12 +233,13 @@ p {
 }
 
 .iconset .caption {
-	position: absolute;
 	font-size: 14px;
 	top: 40px;
 	text-align: center;
-	width: 60px;
-	margin-left: -20px;
+	width: 100%;
+	position: absolute;
+	top: 40px;
+	left: 0;
 }
 
 .latex {
@@ -268,9 +270,6 @@ p {
 
 .latex .caption {
 	font: 14px 'Helvetica Neue', Helvetica, Arial, sans-serif;
-	display: block;
-	margin-left: -5px;
-	letter-spacing: auto;
 }
 
 ul {
@@ -321,7 +320,7 @@ ul {
 
 #social .pict {   
 	font-size: 44px;
-	margin: 0 34px;
+	width: 80px;
 	color: none;
     filter: alpha(opacity=60);
     opacity: 0.6;
@@ -330,10 +329,6 @@ ul {
         -ms-transition: opacity 0.3s ease-in-out;
          -o-transition: opacity 0.3s ease-in-out;
             transition: opacity 0.3s ease-in-out;
-}
-
-#social .pict .caption {
-	margin-left: -15px;
 }
 
 #social .pict:hover {
