@@ -163,7 +163,7 @@ p {
 	width: 870px;
 	height: 550px;
 	display: block;
-	margin: 0 auto;
+	margin: 20px auto 0 auto;
 }
 
 #myprojects p {
