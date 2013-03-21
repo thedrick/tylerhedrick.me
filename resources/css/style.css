@@ -1,0 +1,352 @@
+/* CSS RESET */
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+body {
+	line-height: 1;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+/* END CSS RESET */
+
+#navbg {
+	display: block;
+	background-color: #333;
+	position: fixed;
+	top: 0px;
+	width: 100%;
+	height: 48px;
+	z-index: 999;
+}
+
+nav {
+	display: block;
+	list-style: none;
+	position: fixed;
+	top: 0px;
+	width: 900px;
+	margin: 0 auto;
+	z-index: 999;
+}
+
+nav a {
+	color: white;
+	padding: 10px 0;
+	padding-right: 40px;
+	display: inline-block;
+	text-decoration: none;
+	font-size: 24px;
+	font-family: 'Playball', cursive;
+}
+
+nav a:hover {
+	color: #00AF00;
+}
+
+body {
+	background-image: url('../gray_jean.png');
+	font: 16px 'Helvetica Neue', Helvetica, Arial, sans-serif;
+}
+
+h2 {
+	font-family: 'Playball', cursive;
+	font-size: 42px;
+}
+
+h2:after {
+	content: ' ';
+	width: 98%;
+	height: 2px;
+	background-color: #333;
+	display: block;
+	text-align: left;
+}
+
+h3 {
+	font-family: 'Playball', cursive;
+	font-size: 30px;
+}
+
+h4 {
+	font-weight: bold;
+}
+
+h5 {
+	margin-top: 4px;
+	font-size: 16px;
+	font-style: italic;
+}
+
+h6 {
+	font-size: 13px;
+	display: inline-block;
+	font-style: italic;
+	float: right;
+	margin-top: -37px;
+}
+
+h6:before {
+	content: '('
+}
+
+h6:after {
+	content: ')'
+}
+
+p {
+	line-height: 160%;
+	display: block;
+	margin: 20px 0;
+}
+
+#header {
+	font-family: 'Playball', cursive;
+	color: #333;
+	margin: 120px 0px 120px 0px;
+}
+
+.topHeader {
+	font-size: 100px;
+	display: block;
+}
+
+.bottomHeader {
+	font-size: 70px;
+	display: block;
+	margin: 20px auto;
+	text-align: center;
+}
+
+#content {
+	width: 900px;
+	margin: 0px auto;
+	overflow: hidden;
+}
+
+#myprojects {
+	width: 870px;
+	height: 550px;
+	display: block;
+	margin: 0 auto;
+}
+
+#myprojects p {
+	font-size: 14px;
+	margin: auto;
+}
+
+#resumeContent {
+	margin-top: 30px;
+	font-size: 14px;
+	width: 750px;
+	display: block;
+	margin: 0 auto;
+	background-image: url('../grey.png');
+	padding: 10px 30px;
+	margin-top: 40px;
+	border: solid 8px #ccc;
+}
+
+#resumeContent p {
+	line-height: 150%;
+	margin: 0;
+}
+
+#resumeContent h4 {
+	font-size: 18px;
+	margin-top: 15px;
+}
+
+.resumeSection {
+	margin-top: 40px;
+}
+
+.resumeSection:first-child {
+	margin: 0;
+}
+
+.job {
+	margin-top: 20px;
+}
+
+.tyler {
+	color: #009F00;
+}
+
+.section {
+	margin: 75px 0;
+}
+
+.pict {
+	font-size: 36px;
+	display: inline-block;
+	margin: 0 27px;
+	position: relative;
+}
+
+.iconset {
+	display: block;
+	margin: 20px auto;
+	padding-bottom: 40px;
+	text-align: center;
+}
+
+.pict:first-child {
+	margin-left: 10px;
+}
+
+.iconset .caption {
+	position: absolute;
+	font-size: 14px;
+	top: 40px;
+	text-align: center;
+	width: 60px;
+	margin-left: -20px;
+}
+
+.latex {
+  font-family: Times, "Times New Roman", serif;	
+  letter-spacing: 1px;
+  font-size: 20px;
+  position: relative;
+  top: 14px;
+  margin-right: -2px;
+}
+
+.latex sup {
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-size: 0.85em;
+  vertical-align: 0.15em;
+  margin-left: -0.36em;
+  margin-right: -0.15em;
+}
+
+.latex sub {
+  text-transform: uppercase;
+  vertical-align: -0.5ex;
+  margin-left: -0.1667em;
+  margin-right: -0.125em;
+  font-size: 1em;
+}
+
+.latex .caption {
+	font: 14px 'Helvetica Neue', Helvetica, Arial, sans-serif;
+	display: block;
+	margin-left: -5px;
+	letter-spacing: auto;
+}
+
+ul {
+	width: 650px;
+	display: block;
+	list-style: square;
+	list-style-position: inside;
+	margin-left: 20px;
+}
+
+#resumeContent li {
+	line-height: 160%;
+	margin-left: 2em;
+	text-indent: -2em;
+}
+
+#resumeContent li:first-child {
+	margin-top: 10px;
+}
+
+.icon-mail, .icon-mail:hover {
+	color: gray;
+}
+
+.icon-facebook, .icon-facebook:hover {
+	color: #3B5998;
+}
+
+.icon-linkedin, .icon-linkedin:hover {
+	color: #005A87;
+}
+
+.icon-google__x2B_, .icon-google__x2B_:hover {
+	color: #D02B13;
+}
+
+.icon-github-01, .icon-github-01:hover {
+	color: #222;
+}
+
+.icon-twitter-3, .icon-twitter-3:hover {
+	color: #00ACED;
+}
+
+.icon-blogger, .icon-blogger:hover {
+	color: #FE6700;
+}
+
+#social .pict {   
+	font-size: 44px;
+	margin: 0 34px;
+	color: none;
+    filter: alpha(opacity=60);
+    opacity: 0.6;
+    -webkit-transition: opacity 0.3s ease-in-out;
+       -moz-transition: opacity 0.3s ease-in-out;
+        -ms-transition: opacity 0.3s ease-in-out;
+         -o-transition: opacity 0.3s ease-in-out;
+            transition: opacity 0.3s ease-in-out;
+}
+
+#social .pict .caption {
+	margin-left: -15px;
+}
+
+#social .pict:hover {
+	color: none;
+    zoom: 1;
+    filter: alpha(opacity=100);
+    opacity: 1.0;
+}
+
+a:hover {
+	color: none;
+	text-decoration: none;
+}
+
+
+

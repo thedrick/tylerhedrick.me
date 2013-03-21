@@ -2,59 +2,191 @@
 <html>
 <title>Tyler Hedrick</title>
 <head>
-	<link href="style.css" rel="stylesheet" type="text/css" />
+	<link href='http://fonts.googleapis.com/css?family=Playball' rel='stylesheet' type='text/css'>
+	<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css" media="screen">
+	<link rel="stylesheet" href="pictonic/css/pictonic.css">
+	<link href="css/style.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
-	<nav>
-			<li><a href="#projects">Projects</a></li>
-			<li><a href="#resume">Resume</a></li>
-			<li><a href="#contact">Contact Me</a></li>
-	</nav>
 
+	<div id="navbg"></div>
 	<div id="content">
-	<div id="header">
-		I'm <span class="tyler">Tyler</span>, and this is what I love.
+		<nav>
+			<a href="#about">About</a>
+			<a href="#projects">Projects</a>
+			<a href="#resume">Resum&eacute;</a>
+		</nav>
+	<div class="section">
+		<div id="header">
+			<span class="topHeader">I'm <span class="tyler">Tyler</span>,</span>
+			<span class="bottomHeader">and this is what I love.</span>
+		</div>
 	</div>
 
-	<div id="aboutme">
-		<h2>About Me</h2>
-		<p>
-			Hey there, I'm <span class="tyler">Tyler Hedrick</span> and I'm passionate about <span class="tyler">computer science</span>, <span class="tyler">music</span>, and <span class="tyler">mobile development</span>. I am currently a junior at Carnegie Mellon University pursuing a degree in Computer Science with a minor in Music Technology. I will be an intern at Facebook for the second time this summer working on their mobile team.
-		</p>
-	</div>
-
-	<div id="myprojects">
-		<h2>Projects</h2>
-		<div class="project">
-			<h3>Gilbert</h3>
-			<div id="gilbertimg"></div>
-			<p> 
-				<a href="http://gilbertapp.herokuapp.com">Gilbert</a> is a webapp created during the 36 hour MHacks hackathon at the University of Michigan. The idea behind Gilbert spawned from the frustration in how much code it takes to create custom views on iOS, especially since a lot of that code is repeated. With Gilbert, the user can write some short JSON to describe a view, and get auto-generated Objective-C code to create that view on the iPhone. It also creates an HTML and CSS version of the same view for a mobile web version of the app. The text editors are Ace editors and the backend is written in <a href="http://www.nodejs.org">Node.js</a>. I wrote the backend server and the Objective-C parser while my partner <a href="http://www.stephanieyeung.me">Stephanie Yeung</a> wrote the HTML/CSS parser, both of which are written in Javascript. 
+	<div class="section">
+		<div id="about">
+			<h2>About Me</h2>
+			<p>
+				Hey there, I'm <span class="tyler">Tyler Hedrick</span> and I'm passionate about computer science, music, and mobile development. I am currently a junior at Carnegie Mellon University pursuing a degree in Computer Science with a minor in Music Technology. I will be an intern at Facebook for the second time this summer working on their mobile team.
 			</p>
-			<p> Checkout Gilbert on <a href="http://www.github.com/thedrick/Gilbert">Github</a></p>
-		</div>
-
-		<div class="project">
-			<h3>Lien</h3>
-			<div id="lienimg"></div>
-			<p>Lien, which stands for "connection" in French, is a social event planning app for the iPhone created during the Tartanhacks hackathon (Jan 2013). I would describe this app as a "Twitter meets Facebook Events" app where you can schedule events and invite your friends in real time, or host a public event for your friends to find and join. The idea for this app came out of trying to coordinate meet-ups with friends via text messaging. Spontaneous get-togethers are not something that would warrant a full Facebook event, but can be annoying to try and plan while coordinating everyone's busy schedule. Lien is meant to be the bridge that fixes this problem. Lien is a work in progress.</p>
-			<p> I worked in a small team on this project consisting of Stephanie Yeung, Mitra Raman, and Samaan Ghani. My role was to be the main iOS developer as I had the most experience.</p>
-		</div>
-
-		<div class="project">
-			<h3>Chefmates</h3>
-			<div id="chefmatesimg"></div>
-			<p>Chefmates is an iPhone app I wrote which is based off a web-app I helped create during the CMU Facebook Hackathon in Fall 2012. The app is designed to make it easy to find and share new recipes based on the items you currently have in your pantry. The recipes are scraped from AllRecipes using a python script, and stored in a database. I used Parse as the backend and utilized their Cloud Code service to handle recipe finding logic. Chefmates is a work in progress</p>
-			<p>The original app was done in a team, but the iPhone app has been an individaul project</p>
-		</div>
-
-		<div class="project">
-			<h3>Archer's Revenge</h3>
-			<div id="archerimg"></div>
-			<p>A game written using javascript and html5 canvas.</p>
+			<p>
+				When I'm not making websites, or programming the next big iPhone app, you can probably find me at a coffee shop, or exploring a new place for lunch. I also love baking, karaoke, hiking, and volleyball. Make sure you check out my work, and contact me if you like what you see.
+			</p>
 		</div>
 	</div>
+
+	<div class="section" id="projects">
+	<h2>Projects</h2>
+	<div id="myprojects" class="carousel slide">
+		<ol class="carousel-indicators">
+			<li data-target="myprojects" data-slide-to="0" class="active"></li>
+			<li data-target="myprojects" data-slide-to="1"></li>
+			<li data-target="myprojects" data-slide-to="2"></li>
+			<li data-target="myprojects" data-slide-to="3"></li>
+		</ol>
+		<div class="carousel-inner">
+			<div class="active item">
+				<img src="chefmatesLarge.png" alt="Chefmates">
+				<div class="carousel-caption">
+					<h4>Chefmates</h4>
+					<p>Chefmates was born as a web application during the Facebook Hackathon at CMU, but has now become a personal project to create an iPhone equivalent. The idea is to put in the ingredients you have in your pantry, and get suggestions of recipes you can make with those ingredients. You will be able to share those recipes with your Facebook friends, as well as add your own recipes to your cookbook</p>
+				</div>
+			</div>
+			<div class="item">
+				<img src="archerLarge.png" alt="Archer's Revenge">
+				<div class="carousel-caption">
+					<h4>Archer's Revenge</h4>
+					<p>Archer's Revenge is a 2-player turn-based strategy game I made in a small group for a class project. The game is written entirely in javascript using HTML5 canvas. This was my first using javascript, and receieved first place in a class-wide competition for the best game. You can play the game <a class="tyler" href="archers-revenge.html">here</a>.</p>
+				</div>
+			</div>
+			<div class="item">
+				<img src="lienLarge.png" alt="Lien">
+				<div class="carousel-caption">
+					<h4>Lien</h4>
+					<p>Lien (meaning "connection" in French) is a native iOS application built during the Tartanhacks Hackathon 2013. With Lien it is very simple to set up improptu events and invite your friends, or start a public party for people to join. I like to think of it as Twitter meets Facebook Events.</p>
+				</div>
+			</div>
+			<div class="item">
+				<img src="gilbertLarge.png" alt="Gilbert">
+				<div class="carousel-caption">
+					<h4>Gilbert</h4>
+					<p>Gilbert evolved out of a frustration found while building Lien with how tedious it can be to build custom views for mobile applications. With Gilbert, the user can write a short JSON object describing a view in a mobile app on the left, and have it be converted into both Objective-C and HTML/CSS code to create that view on the right. Gilbert was created during MHacks 2013 at University of Michigan.</p>
+				</div>
+			</div>
+		</div>
+
+		<a class="carousel-control left" href="#myprojects" data-slide="prev">&lsaquo;</a>
+		<a class="carousel-control right" href="#myprojects" data-slide="next">&rsaquo;</a>
+		
 	</div>
+
+	<div class="section" id="resume">
+		<h2>Resum&eacute;</h2>
+		<div id="resumeContent">
+			<div class="resumeSection">
+				<h3>Education</h3>
+				<h4>Carnegie Mellon University</h4>
+				<div clas="details">
+					<p>5000 Forbes Avenue. Pittsburgh PA, 15213</p>
+					<p>B.S. Computer Science, Minor in Music Technology</p>
+					<p>Expected Graduation: December 2013</p>
+				</div>
+			</div>
+
+			<div class="resumeSection">
+				<h3>Experience</h3>
+				<div class="job">
+					<h4>Facebook</h4>
+					<h5>Production Engineer Intern</h5>
+					<h6>Summer 2012</h6>
+					<ul>
+						<li>Created a monitoring system for Facebook's Ads department to ensure configuration files on all tens of thousands of memcache hosts are up-to-date.</li>
+						<li>Set up a cron job, alets, and auto-remediation rules to check files at a regular interval</li>
+						<li>4 weeks was spent developing a new feature for the Facebook Camera app for iOS</li>
+						<li>Asked to return the following summer as an iOS Engineering intern</li>
+					</ul>
+
+				</div>
+
+				<div class="job">
+					<h4>Carnegie Mellon University Office of Admissions</h4>
+					<h5>Andrew Ambassador</h5> 
+					<h6>January 2011 - Present</h6>
+					<ul>
+						<li>Gives campus tours and calls prospective students with important information regarding the university and admissions documents</li>
+					</ul>
+				</div>
+
+				<div class="job">
+					<h4>Carnegie Mellon University School of Computer Science</h4>
+					<h5>Teaching Assistant</h5>
+					<h6>January 2012 - December 2012</h6>
+					<ul>
+						<li>Ran recitations, graded papers, and helped students gain proficiency in SML, functional programming concepts, and mathematical proofs</li>
+						<li>Helped create assignments and weekly labs including documentation, starter code, and solutions</li>
+					</ul>
+				</div>
+
+				<div class="job">
+					<h4>Carnegie Mellon University School of Music</h4>
+					<h5>Recording Engineer</h5>
+					<h6>September 2010 - May 2012</h6>
+					<ul>
+						<li>Set up microphones, sound board, lights, and recording equipment for use with large performacnes and small recitals</li>
+						<li>Used ProTools to mix and master final recordings for CD</li>
+					</ul>
+				</div>
+			</div>
+
+			<div class="resumeSection">
+				<h3>Skills</h3>
+				<div class="details">
+					<h4>Languages</h4>
+					<div class="iconset">
+						<span class="pict icon-prog-python"><span class="caption">Python</span></span>
+						<span class="pict icon-prog-objc"><span class="caption">Obj-C</span></span>
+						<span class="pict icon-prog-js02"><span class="caption">Javascript</span></span>
+						<span class="pict icon-prog-jquery"><span class="caption">jQuery</span></span>
+						<span class="pict icon-prog-java"><span class="caption">Java</span></span>
+						<span class="pict icon-prog-ruby"><span class="caption">Ruby</span></span>
+						<span class="pict icon-prog-php01"><span class="caption">PHP</span></span>
+						<span class="pict icon-prog-c"><span class="caption">C</span></span>
+						<span class="pict icon-html5-02"><span class="caption">HTML5</span></span>
+						<span class="pict icon-css3-02"><span class="caption">CSS3</span></span>
+					</div>
+					<h4>Software</h4>
+					<div class="iconset">
+						<span class="pict icon-os-ios"><span class="caption">Xcode</span></span>
+						<span class="pict icon-vc-git"><span class="caption">Git</span></span>
+						<span class="pict icon-vc-svn"><span class="caption">SVN</span></span>
+						<span class="pict latex">L<sup>a</sup>T<sub>e</sub>X<span class="caption">LaTeX</span></span>
+						<span class="pict icon-dbs-mongodb"><span class="caption">MongoDB</span></span>
+						<span class="pict icon-prog-nodejs02"><span class="caption">Node.js</span></span>
+						<span class="pict icon-adb-photoshop"><span class="caption">Photoshop</span></span>
+					</div>
+				</div>
+			</div>
+
+		</div>
+	</div>
+
+	<div id="social">
+		<div class="iconset">
+			<a class="pict icon-mail" href="mailto:tylerhedrick@me.com"><span class="caption">email</span></a>
+			<a class="pict icon-facebook" href="http://www.facebook.com/hedrick.tyler"><span class="caption">facebook</span></a>
+			<a class="pict icon-google__x2B_" href="https://plus.google.com/103333412667555141157/posts"><span class="caption">google+</span></a>
+			<a class="pict icon-twitter-3" href="http://www.twitter.com/tyler_hedrick"><span class="caption">twitter</span></a>
+			<a class="pict icon-blogger" href="http://tyleratfacebook.blogspot.com/"><span class="caption">blogspot</span></a>
+			<a class="pict icon-linkedin" href="http://www.linkedin.com/pub/tyler-hedrick/34/106/917"><span class="caption">linkedin</span></a>
+			<a class="pict icon-github-01" href="https://github.com/thedrick"><span class="caption">github</span></a>
+		</div>
+	</div>
+
+	</div>
+</div>
+<script src="js/jquery-1.9.0.js"></script>
+<script src="js/bootstrap.min.js" type="text/javascript"></script>
+<script src="js/animate.js"></script>
 </body>
 
 </html>
