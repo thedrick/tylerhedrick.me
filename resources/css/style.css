@@ -73,6 +73,11 @@ nav a {
 	text-decoration: none;
 	font-size: 24px;
 	font-family: 'Playball', cursive;
+	-webkit-transition: color 0.1s ease-in-out;
+       -moz-transition: color 0.1s ease-in-out;
+        -ms-transition: color 0.1s ease-in-out;
+         -o-transition: color 0.1s ease-in-out;
+            transition: color 0.1s ease-in-out;
 }
 
 nav a:hover {
