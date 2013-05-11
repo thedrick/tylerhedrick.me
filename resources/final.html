@@ -50,7 +50,7 @@ Load provided image
   
   <div id="approach">
     <h1>Approach</h1>
-    <p>We originally planned to use Python for this project (see <a href="index.html">proposal</a>), and parallelize the computations for image matches using PyCUDA, but ran into quite a few roadblocks on that path. Our serial Python version of generating image mosaics with a database of ~6,000 images required over 3 minutes of computation time. We realized this time would only grow exponentially if we wanted to use a database of over 100,000 images. We decided to continue for the time being and utilize PyCUDA to start attempting to speed up the implementation before adding any more images. After reading extensive documentation and &ldquo;successfully&rdquo; running our code, the result we achieved was crashing our computer. At this point, we decided to start from scratch with C++.</p>
+    <p>We originally planned to use Python for this project (see <a href="proposal.html">proposal</a>), and parallelize the computations for image matches using PyCUDA, but ran into quite a few roadblocks on that path. Our serial Python version of generating image mosaics with a database of ~6,000 images required over 3 minutes of computation time. We realized this time would only grow exponentially if we wanted to use a database of over 100,000 images. We decided to continue for the time being and utilize PyCUDA to start attempting to speed up the implementation before adding any more images. After reading extensive documentation and &ldquo;successfully&rdquo; running our code, the result we achieved was crashing our computer. At this point, we decided to start from scratch with C++.</p>
     
     <p>The work required to partition our images is done within our <code>imageSlicer</code> class, which utilizes the <a href="http://imagemagick.org">ImageMagick</a> library for image manipulation. This class defines functions that slice the input image into subimages, and divides these subimages into the grids that we average over for image matching. Each of these grid tiles is then averaged into one (R,G,B) value, giving us multiple data points per subimage to find the overall closest match. We are currently exploring the best grid size to maximize match and minimize overhead. 
     </p>
@@ -77,12 +77,12 @@ Load provided image
     </div>
     <div class="checkpoint pictures">
       <img src="img/shore.jpg" alt="shore" />
-      <img src="img/girl_mosaic_unique.jpg" alt="shoremosaic" />
+      <img src="img/shore_mosaic_unique.jpg" alt="shoremosaic" />
       <a href="img/output_shore.jpg"><img src="img/output_shore_small.jpg" alt="shoremosaic" /></a>
     </div>
     <div class="checkpoint pictures">
       <img src="img/icecream.jpg" alt="icecream" />
-      <img src="" alt="icecreammosaic" />
+      <img src="img/icecream_mosaic.jpg" alt="icecreammosaic" />
       <a href="img/output_icecream.jpg"><img src="img/output_icecream_small.jpg" alt="icecreammosaic" /></a>
     </div>
   </div>
